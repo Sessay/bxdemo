@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>bx</title>
+    <title>百信信息发布系统</title>
   </head>
   <body>
     <noscript>
@@ -14,4 +14,42 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <style>
+  html{ font-size: 62.5%;  /* 10 ÷ 16 × 100% = 62.5% */ }
+  html, body {
+    -webkit-user-select: none;   /* 禁止选中文本（如无文本选中需求，此为必选项） */
+    user-select: none;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+  }
+  a, img { -webkit-touch-callout: none; /* 禁止长按链接与图片弹出菜单 */}
+  body,input,select,button{
+    font:1.2rem normal "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+  }
+  code, kbd, pre, samp, tt { font-family: "Courier New", Courier, monospace; } /* 统一等宽字体 */
+  small {
+    font-size: 1rem;
+  } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+  body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+  dl, dt, dd, ul, ol, li, pre, /* text formatting elements 文本格式元素 */
+  fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+  th, td {
+    margin:0;padding:0;
+  }
+  input,button,select,img{ margin:0;line-height:normal;outline:none; }
+  select{ padding:1px }
+  ul,ol{  list-style:none }
+  select,input,button,button img,label{ vertical-align:middle }
+  header,footer,section,aside,nav,hgroup,figure,figcaption{ display:block;margin:0;padding:0;border:none; } /*HTML5标签变块级*/
+  a{  text-decoration:none;height: 100%;  } /*重置链接下划线*/
+  img { width:100%; height:auto; border:none; }
+  a:hover,a:link,a:active,a:visited{  color: inherit; }
+  /*清除浮动*/
+  .clear{ clear:both; }
+  .clearfix:after{  content:".";display:block;height:0;clear:both;visibility:hidden }
+  .clearfix{  display:inline-block  }
+  * html .clearfix{ height:1% } /* Hides from IE-mac \*/
+  .clearfix{  display:block }/* End hide from IE-mac */
+  </style>
 </html>

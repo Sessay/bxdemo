@@ -3,14 +3,18 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
-
+    theme: 'themeone'
   },
   mutations: {
-
+    changetheme (theme, themetype) {
+      theme = themetype
+    }
   },
   actions: {
 
   }
 })
+
+export default store
