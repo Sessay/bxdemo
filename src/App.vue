@@ -9,7 +9,7 @@
 </template>
 <script>
 import CommonTitle from '@/components/common/CommonTitle.vue'
-import func from './vue-temp/vue-editor-bridge';
+import { mapActions, mapGetters } from 'vuex'
 export default {
   // name: 'app',
   components: {
@@ -21,20 +21,18 @@ export default {
     }
   },
   computed: {
-    theme () {
-      return this.$store.state.theme
-    }
+    ...mapGetters({
+      theme: 'gettheme'
+    })
   },
   methods: {
-    change () {
-      return new Promise(function(resolve,reject){
-        this.$store.commit('changetheme', 'themetwo')
-      })
-    }
+    ...mapActions([
+      'changetheme'
+    ])
   },
   mounted () {
-    this.change().then(function(){
-      console.log(this.theme)
+    this.$store.dispatch('changetheme', {
+      'theme': 'themetwo'
     })
   }
 }

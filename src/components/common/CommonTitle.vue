@@ -33,8 +33,19 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  props: ['title']
+  props: ['title'],
+  computed: {
+    ...mapGetters({
+      theme: 'gettheme'
+    })
+  },
+  watch: {
+    theme () {
+      console.log(this.$store.state.theme)
+    }
+  }
 }
 </script>
 <style lang="less" scoped>
