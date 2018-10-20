@@ -41,10 +41,8 @@ export default {
       theme: 'gettheme'
     })
   },
-  watch: {
-    theme () {
-      console.log(this.$store.state.theme)
-    }
+  mounted () {
+    console.log(this.theme)
   }
 }
 </script>

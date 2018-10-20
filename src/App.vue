@@ -34,6 +34,7 @@ export default {
     this.$store.dispatch('changetheme', {
       'theme': 'themetwo'
     })
+    console.log(this.theme)
   }
 }
 </script>
