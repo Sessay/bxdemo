@@ -1,23 +1,25 @@
 <template>
   <div id="app">
     <CommonTitle :title="title"/>
-    <div id="nav">
-      <router-link to="/"></router-link>
-    </div>
+    <CommonNav :pages="pages"/>
+    <router-link to="/"></router-link>
     <router-view/>
   </div>
 </template>
 <script>
 import CommonTitle from '@/components/common/CommonTitle.vue'
+import CommonNav from '@/components/common/CommonNav.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   // name: 'app',
   components: {
-    CommonTitle
+    CommonTitle,
+    CommonNav
   },
   data () {
     return {
-      title: '测试ceshi'
+      title: '测试ceshi',
+      pages: 'index'
     }
   },
   computed: {
@@ -30,11 +32,10 @@ export default {
       'changetheme'
     ])
   },
-  mounted () {
-    this.$store.dispatch('changetheme', {
-      'theme': 'themetwo'
+  beforeCreate () {
+    this.$store.dispatch('changetheme', 'themetwo').then(theme => {
+      console.log(this.theme)
     })
-    console.log(this.theme)
   }
 }
 </script>
