@@ -61,7 +61,7 @@ export default {
         position: relative;
         height: 100%;
         .iconfont{
-            color: #688197;
+            color: var(--title-themeone-color);
             margin-right: 5px;
             &.icon-notice{
                 font-size: 18px;

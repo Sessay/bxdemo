@@ -2,19 +2,20 @@
   <div id="app">
     <CommonTitle :title="title"/>
     <CommonNav :pages="pages"/>
-    <router-link to="/"></router-link>
-    <router-view/>
+    <Index />
   </div>
 </template>
 <script>
 import CommonTitle from '@/components/common/CommonTitle.vue'
 import CommonNav from '@/components/common/CommonNav.vue'
+import Index from '@/views/index.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   // name: 'app',
   components: {
     CommonTitle,
-    CommonNav
+    CommonNav,
+    Index
   },
   data () {
     return {
@@ -49,7 +50,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   width: 100%;
 }
 #nav {
