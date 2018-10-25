@@ -1,12 +1,13 @@
 <template>
     <div class="index">
+        <CommonNav :pages="pages"/>
         <img src="../assets/images/banner.png" class="index-banner"/>
         <div class="app-container index-content">
             <div class="index-content-cartype">
                 <div class="index-cartype-name">轿车</div>
                 <div class="index-cartype-carstyle">
                     <div class="index-carstyle-group">
-                        <router-link :to="{ name: 'carstyle' }">
+                        <router-link :to="{ 'name': 'carstyle' }">
                             <div class="carstyle-group-img carstyle-img-select">
                                 <img src="../assets/images/car/carriage/GA4.png"/>
                             </div>
@@ -106,8 +107,16 @@
     </div>
 </template>
 <script>
+import CommonNav from '@/components/common/CommonNav.vue'
 export default {
-
+  components: {
+    CommonNav
+  },
+  data () {
+    return {
+      pages: 'index'
+    }
+  }
 }
 </script>
 <style lang="less" scoped>

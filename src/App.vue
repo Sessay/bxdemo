@@ -1,26 +1,21 @@
 <template>
   <div id="app">
     <CommonTitle :title="title"/>
-    <CommonNav :pages="pages"/>
-    <Index />
+    <router-link :to="{'name': 'index'}"></router-link>
+    <router-view></router-view>
   </div>
 </template>
 <script>
 import CommonTitle from '@/components/common/CommonTitle.vue'
-import CommonNav from '@/components/common/CommonNav.vue'
-import Index from '@/views/index.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   // name: 'app',
   components: {
-    CommonTitle,
-    CommonNav,
-    Index
+    CommonTitle
   },
   data () {
     return {
-      title: '测试ceshi',
-      pages: 'index'
+      title: '测试ceshi'
     }
   },
   computed: {
@@ -44,7 +39,7 @@ export default {
 <style lang="less">
 @import url("assets/css/common.less");
 @import url("assets/css/themeone/common.css");
-@import url("http://at.alicdn.com/t/font_754783_kftx754jekb.css");
+@import url("http://at.alicdn.com/t/font_889198_wlqhph4dvgr.css");
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

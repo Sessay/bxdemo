@@ -4,8 +4,10 @@
             <div class="common-title-span">{{title}}用户，您好！</div>
             <div class="common-title-icons app-flex-row">
                 <div class="common-icons-group app-flex-row">
-                    <i class="iconfont icon-home"></i>
-                    <span class="common-icons-span">首页</span>
+                    <router-link to="/">
+                        <i class="iconfont icon-home"></i>
+                        <span class="common-icons-span">首页</span>
+                    </router-link>
                 </div>
                 <div class="common-icons-group app-flex-row">
                     <i class="iconfont icon-notice"></i>
@@ -23,6 +25,10 @@
                 <div class="common-icons-group app-flex-row">
                     <i class="iconfont icon-manual"></i>
                     <span class="common-icons-span">帮助手册</span>
+                </div>
+                <div class="common-icons-group app-flex-row">
+                    <i class="iconfont icon-theme"></i>
+                    <span class="common-icons-span">换肤</span>
                 </div>
                 <div class="common-icons-group app-flex-row">
                     <i class="iconfont icon-out"></i>

@@ -1,9 +1,10 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 import Index from './views/index.vue'
 import Carstyle from './views/carstyle.vue'
+import HandBook from './views/handbook.vue'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 const routes = [
   {
     path: '/',
@@ -14,10 +15,15 @@ const routes = [
     path: '/carstyle',
     name: 'carstyle',
     component: Carstyle
+  },
+  {
+    path: '/handbook',
+    name: 'handbook',
+    component: HandBook
   }
 ]
 
-const router = new VueRouter({
+const router = new Router({
   mode: 'history',
   routes
 })
