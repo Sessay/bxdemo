@@ -3,103 +3,16 @@
         <CommonNav :pages="pages"/>
         <img src="../assets/images/banner.png" class="index-banner"/>
         <div class="app-container index-content">
-            <div class="index-content-cartype">
-                <div class="index-cartype-name">轿车</div>
+            <div class="index-content-cartype" v-for="(items,index) in car" :key="index">
+                <div class="index-cartype-name">{{items.name}}</div>
                 <div class="index-cartype-carstyle">
-                    <div class="index-carstyle-group">
-                        <router-link :to="{ 'name': 'carstyle' }">
-                            <div class="carstyle-group-img carstyle-img-select">
-                                <img src="../assets/images/car/carriage/GA4.png"/>
+                    <div class="index-carstyle-group" v-for="item in items.children" :key="item.name">
+                        <router-link :to="{ name: 'carstyle', params: {'stylename': items.name,'typename': item.name,'carstyle': items,'cartype': item} }">
+                            <div class="carstyle-group-img" :class="{'app-img-select':item.active}" @mouseover="selectStyle(item)" @mouseout="outStyle(item)">
+                                <img :src="item.img"/>
                             </div>
-                            <div class="carstyle-group-span">GA4</div>
+                            <div class="carstyle-group-span">{{item.name}}</div>
                         </router-link>
-                    </div>
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/carriage/GA6.png"/>
-                        </div>
-                        <div class="carstyle-group-span">GA6</div>
-                    </div>
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/carriage/GA8.png"/>
-                        </div>
-                        <div class="carstyle-group-span">GA8</div>
-                    </div>
-                </div>
-            </div>
-            <div class="index-content-cartype">
-                <div class="index-cartype-name">SUV</div>
-                <div class="index-cartype-carstyle">
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/SUV/GS3.png"/>
-                        </div>
-                        <div class="carstyle-group-span">GS3</div>
-                    </div>
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/SUV/GS4.png"/>
-                        </div>
-                        <div class="carstyle-group-span">GS4</div>
-                    </div>
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/SUV/GS7.png"/>
-                        </div>
-                        <div class="carstyle-group-span">GS7</div>
-                    </div>
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/SUV/GS8.png"/>
-                        </div>
-                        <div class="carstyle-group-span">GS8</div>
-                    </div>
-                </div>
-            </div>
-            <div class="index-content-cartype">
-                <div class="index-cartype-name">新能源车</div>
-                <div class="index-cartype-carstyle">
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/NewEnergy/GS4PHEV.png"/>
-                        </div>
-                        <div class="carstyle-group-span">GS4 PHEV</div>
-                    </div>
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/NewEnergy/GA3S.png"/>
-                        </div>
-                        <div class="carstyle-group-span">GA3S PHEV</div>
-                    </div>
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/NewEnergy/GE3.png"/>
-                        </div>
-                        <div class="carstyle-group-span">GE3</div>
-                    </div>
-                </div>
-            </div>
-            <div class="index-content-cartype">
-                <div class="index-cartype-name">未来概念</div>
-                <div class="index-cartype-carstyle">
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/future/E-JET.png"/>
-                        </div>
-                        <div class="carstyle-group-span">E-JET</div>
-                    </div>
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/future/E-LINKER.png"/>
-                        </div>
-                        <div class="carstyle-group-span">E-LINKER</div>
-                    </div>
-                    <div class="index-carstyle-group">
-                        <div class="carstyle-group-img">
-                            <img src="../assets/images/car/future/EVCOUPE.png"/>
-                        </div>
-                        <div class="carstyle-group-span">EV COUPE</div>
                     </div>
                 </div>
             </div>
@@ -114,8 +27,26 @@ export default {
   },
   data () {
     return {
-      pages: 'index'
+      pages: 'index',
+      car: ''
     }
+  },
+  methods: {
+    getData () {
+      this.$api.get('http://api.com/index').then(res => {
+        this.car = res.data.car
+        console.log(this.car)
+      })
+    },
+    selectStyle (item) {
+      this.$set(item, 'active', true)
+    },
+    outStyle (item) {
+      this.$set(item, 'active', false)
+    }
+  },
+  created () {
+    this.getData()
   }
 }
 </script>
@@ -149,9 +80,6 @@ export default {
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                    }
-                    .carstyle-img-select{
-                        box-shadow: 1px 1px 15px rgba(0,0,0,0.3);
                     }
                     .carstyle-group-span{
                         height: 60px;

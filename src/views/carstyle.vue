@@ -53,9 +53,7 @@
             <div class="carstyle-title-assemble">
               <div class="carstyle-title-group">
                 <span class="carstyle-title-carstyle">更多</span>
-                <div class="carstyle-title-icon">
-                  <i class="iconfont icon-up"></i>
-                </div>
+                <i class="iconfont icon-down"></i>
               </div>
               <div class="carstyle-group-children">
                 <ul class="carstyle-group-ul">
@@ -67,7 +65,7 @@
           </div>
         </div>
         <div class="carstyle-cartype">
-          <div :class="{'carstyle-cartype-group app-flex-column carstyle-cartype-select':carselect = 'GA4'}">
+          <div :class="{'carstyle-cartype-group app-flex-column app-img-select':carselect = 'GA4'}">
             <router-link :to="{'name': 'handbook'}">
               <div class="carstyle-cartype-imgroup app-flex-row">
                 <img src="../assets/images/car/carriage/GA4.png"/>
@@ -140,6 +138,9 @@ export default {
       select: 'select',
       carselect: 'GA4'
     }
+  },
+  mounted () {
+    console.log(this.$route.params)
   }
 }
 </script>
@@ -261,9 +262,6 @@ export default {
           align-items: center;
           line-height: 1.7;
         }
-      }
-      .carstyle-cartype-select{
-        box-shadow: 1px 1px 20px rgba(0,0,0,0.3);
       }
     }
   }

@@ -35,9 +35,6 @@ export default {
     return {
       select: '用户手册'
     }
-  },
-  mounted () {
-    console.log(this.pages)
   }
 }
 </script>

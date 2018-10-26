@@ -46,9 +46,6 @@ export default {
     ...mapGetters({
       theme: 'gettheme'
     })
-  },
-  mounted () {
-    console.log(this.theme)
   }
 }
 </script>

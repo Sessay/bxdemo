@@ -28,9 +28,8 @@ export default {
       'changetheme'
     ])
   },
-  beforeCreate () {
+  created () {
     this.$store.dispatch('changetheme', 'themetwo').then(theme => {
-      console.log(this.theme)
     })
   }
 }
@@ -39,7 +38,7 @@ export default {
 <style lang="less">
 @import url("assets/css/common.less");
 @import url("assets/css/themeone/common.css");
-@import url("http://at.alicdn.com/t/font_889198_wlqhph4dvgr.css");
+@import url("http://at.alicdn.com/t/font_889198_p04i5djhl3c.css");
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
