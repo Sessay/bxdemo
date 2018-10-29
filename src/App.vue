@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="app-flex-column">
     <CommonTitle :title="title"/>
-    <router-link :to="{'name': 'index'}"></router-link>
+    <router-link :to="{'name': 'index'}" class="app-index"></router-link>
     <router-view></router-view>
   </div>
 </template>

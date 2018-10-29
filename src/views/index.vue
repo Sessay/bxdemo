@@ -6,9 +6,9 @@
             <div class="index-content-cartype" v-for="(items,index) in car" :key="index">
                 <div class="index-cartype-name">{{items.name}}</div>
                 <div class="index-cartype-carstyle">
-                    <div class="index-carstyle-group" v-for="item in items.children" :key="item.name">
-                        <router-link :to="{ name: 'carstyle', params: {'stylename': items.name,'typename': item.name,'carstyle': items,'cartype': item} }">
-                            <div class="carstyle-group-img" :class="{'app-img-select':item.active}" @mouseover="selectStyle(item)" @mouseout="outStyle(item)">
+                    <div class="index-carstyle-group" v-for="(item, inx) in items.children" :key="item.name">
+                        <router-link :to="{ name: 'carstyle', params: {'carstyle': items,'index': index,'styleindex': inx,'car': car} }">
+                            <div class="carstyle-group-img" :class="{'app-img-select':item.active}" @mousedown="outStyle(item)" @mouseover="selectStyle(item)" @mouseout="outStyle(item)">
                                 <img :src="item.img"/>
                             </div>
                             <div class="carstyle-group-span">{{item.name}}</div>
@@ -42,7 +42,7 @@ export default {
       this.$set(item, 'active', true)
     },
     outStyle (item) {
-      this.$set(item, 'active', false)
+      this.$delete(item, 'active')
     }
   },
   created () {

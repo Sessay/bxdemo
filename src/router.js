@@ -14,7 +14,8 @@ const routes = [
   {
     path: '/carstyle',
     name: 'carstyle',
-    component: Carstyle
+    component: Carstyle,
+    props: (route) => ({ query: route.query.q })
   },
   {
     path: '/handbook',

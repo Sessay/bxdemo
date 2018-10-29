@@ -2,15 +2,16 @@
     <div class="common-nav">
         <div class="app-container app-flex-row common-nav-title">
             <div class="common-log-input app-flex-row">
-                <img class="nav-log" src="../../assets/images/index_logo.png" />
-                <div v-if="pages == 'index'" class="nav-input-group">
-                    <input class="nav-input-span" id="index"/>
-                    <i class="iconfont icon-search"></i>
-                </div>
-                <div v-if="pages == 'carstyle'" class="nav-input-group">
-                    <input class="nav-input-span" id="carstyle"/>
-                    <i class="iconfont icon-search"></i>
-                </div>
+
+            </div>
+            <img class="nav-log" src="../../assets/images/index_logo.png" />
+            <div v-if="pages == 'index'" class="nav-input-group">
+                <input class="nav-input-span" id="index"/>
+                <i class="iconfont icon-search"></i>
+            </div>
+            <div v-if="pages == 'carstyle'" class="nav-input-group">
+                <input class="nav-input-span" id="carstyle"/>
+                <i class="iconfont icon-search"></i>
             </div>
             <div v-if="pages == 'handbook'" class="nav-handbook">
                 <ul class="handbook-list-ul">
@@ -44,34 +45,31 @@ export default {
     background-color: #fff;
     box-shadow: 0 11px 20px rgba(0,0,0,0.09);
     .common-nav-title{
-        justify-content: space-between;
-        .common-log-input{
-            height: 100%;
-            .nav-log{
-                padding: 0 50px 0 0;
-                width: auto;
-                height: 80%;
+        .nav-log{
+            padding: 0 50px 0 0;
+            width: auto;
+            height: 80%;
+        }
+        .nav-input-group{
+            position: relative;
+            .nav-input-span{
+                height: 36px;
+                width: 403px;
+                padding-right: 43px;
+                border: 1px solid #D2D2D2;
+                text-indent: 1.2rem;
+                font-size: 1.4rem;
             }
-            .nav-input-group{
-                position: relative;
-                .nav-input-span{
-                    height: 36px;
-                    width: 403px;
-                    padding-right: 43px;
-                    border: 1px solid #D2D2D2;
-                    text-indent: 1.2rem;
-                    font-size: 1.4rem;
-                }
-                .icon-search:before{
-                    position: absolute;
-                    top: 5px;
-                    right: 10px;
-                    font-size: 24px;
-                    color: #666;
-                }
+            .icon-search:before{
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                font-size: 24px;
+                color: #666;
             }
         }
         .nav-handbook{
+            margin-left: auto;
             .handbook-list-ul{
                 .handbook-list-li{
                     display: inline-block;
