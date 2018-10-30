@@ -42,7 +42,8 @@
             <div class="carstyle-title-assemble" @click="carShow('moreShow')">
               <div class="carstyle-title-group">
                 <span class="carstyle-title-carstyle">更多</span>
-                <i class="iconfont icon-down"></i>
+                <i class="iconfont icon-down" v-if="!moreShow"></i>
+              <i class="iconfont icon-up" v-if="moreShow> 0"></i>
               </div>
               <div class="carstyle-group-children" v-show="moreShow">
                 <ul class="carstyle-group-ul">
@@ -54,13 +55,13 @@
         </div>
         <div class="carstyle-cartype">
           <div class="carstyle-cartype-group app-flex-column" v-for="(item,index) in styleyears" :class="{'app-img-select':item.active}" @mousedown="outStyle(item)" @mouseover="selectStyle(item)" @mouseout="outStyle(item)" :key="index">
-            <router-link :to="{'name': 'handbook'}">
+            <router-link :to="{name: 'handbook', query:{'carname': caritem.name, 'cartype': item.name+'('+item.introduce+')'}}">
               <div class="carstyle-cartype-imgroup app-flex-row">
                 <img :src="item.img"/>
               </div>
               <div class="carstyle-cartype-span app-flex-column">
                 <div class="carstyle-cartype-name">{{item.name}}</div>
-                <div class="carstyle-cartype-introdce">{{item.introdce}}</div>
+                <div class="carstyle-cartype-introdce">{{item.introduce}}</div>
               </div>
             </router-link>
           </div>
@@ -103,7 +104,6 @@ export default {
     childitem () {
       this.childsiblings = this.notId(this.caritem.children, this.styleid)
       this.styleitem = this.childitem.children
-      console.log(this.styleitem)
       this.select = 0
       this.styleyears = this.styleitem[this.select].children
     }
@@ -176,8 +176,6 @@ export default {
       this.$delete(item, 'active')
     },
     chooseId (array, id) {
-      console.log('array')
-      console.log(array)
       for (let i = 0; i < array.length; i++) {
         if (array[i].id === id) {
           return array[i]
@@ -213,7 +211,6 @@ export default {
       display: flex;
       align-items: center;
       .carstyle-title-total{
-        cursor: pointer;
         padding-right: 5px;
       }
     }

@@ -6,9 +6,9 @@
             <div class="handbook-title">
               <span class="handbook-title-total">全部品牌</span>
               <i class="iconfont icon-right"></i>
-              <span class="handbook-title-carstyle">轿车</span>
+              <span class="handbook-title-carstyle handbook-title-cursor" @click="$router.go(-1)">{{carname}}</span>
               <i class="iconfont icon-right"></i>
-              <span class="handbook-title-carstyle">GA4(标准型，2TZD+5MT,2WD)</span>
+              <span class="handbook-title-carstyle">{{cartype}}</span>
             </div>
             <div class="handbook-main app-flex-row">
               <div class="handbook-main-left"></div>
@@ -27,8 +27,13 @@ export default {
   data () {
     return {
       pages: 'handbook',
-      select: 'select'
+      select: 'select',
+      carname: this.$route.query.carname,
+      cartype: this.$route.query.cartype
     }
+  },
+  created () {
+
   }
 }
 </script>
@@ -47,9 +52,9 @@ export default {
       align-items: center;
       &>*{
         padding-right: 5px;
-        &:not(i){
-          cursor: pointer;
-        }
+      }
+      .handbook-title-cursor{
+        cursor: pointer;
       }
     }
     .handbook-main{
