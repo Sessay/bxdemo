@@ -4,8 +4,9 @@ import router from './router'
 import store from './store/index'
 import mock from './api/mock.js'
 import api from './api/api'
+import VueLocalStorage from 'vue-localstorage'
 
-Vue.use(mock)
+Vue.use(mock, VueLocalStorage)
 Vue.prototype.$api = api
 Vue.config.productionTip = false
 

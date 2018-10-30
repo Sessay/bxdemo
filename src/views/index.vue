@@ -3,11 +3,11 @@
         <CommonNav :pages="pages"/>
         <img src="../assets/images/banner.png" class="index-banner"/>
         <div class="app-container index-content">
-            <div class="index-content-cartype" v-for="(items,index) in car" :key="index">
+            <div class="index-content-cartype" v-for="items in car" :key="items.id">
                 <div class="index-cartype-name">{{items.name}}</div>
                 <div class="index-cartype-carstyle">
-                    <div class="index-carstyle-group" v-for="(item, inx) in items.children" :key="item.name">
-                        <router-link :to="{ name: 'carstyle', params: {'carstyle': items,'index': index,'styleindex': inx,'car': car} }">
+                    <div class="index-carstyle-group" v-for="item in items.children" :key="item.id">
+                        <router-link :to="{ name: 'carstyle', query: {'carid': items.id,'styleid': item.id}}">
                             <div class="carstyle-group-img" :class="{'app-img-select':item.active}" @mousedown="outStyle(item)" @mouseover="selectStyle(item)" @mouseout="outStyle(item)">
                                 <img :src="item.img"/>
                             </div>
@@ -20,6 +20,7 @@
     </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import CommonNav from '@/components/common/CommonNav.vue'
 export default {
   components: {
@@ -32,10 +33,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'setCar'
+    ]),
     getData () {
       this.$api.get('http://api.com/index').then(res => {
-        this.car = res.data.car
-        console.log(this.car)
+        this.$store.dispatch('setCar', res.data.car).then(theme => {
+          this.car = res.data.car
+        })
       })
     },
     selectStyle (item) {

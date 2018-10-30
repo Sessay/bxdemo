@@ -9,11 +9,12 @@
           <div class="carstyle-title-assemble" @click="carShow('styleShow')">
             <div class="carstyle-title-group">
               <span class="carstyle-title-carstyle">{{caritem.name}}</span>
-              <i class="iconfont icon-down" v-if="carsiblings.length > 0"></i>
+              <i class="iconfont icon-down" v-if="carsiblings.length > 1 && !styleShow"></i>
+              <i class="iconfont icon-up" v-if="carsiblings.length > 1 && styleShow"></i>
             </div>
-            <div class="carstyle-group-children" v-show="styleShow" v-if="carsiblings.length > 0">
+            <div class="carstyle-group-children" v-show="styleShow" v-if="carsiblings.length > 1">
               <ul class="carstyle-group-ul">
-                <li class="carstyle-group-li" v-for="(item,index) in carsiblings" :key="item.name" @click="changeStyle(item,index)">{{item.name}}</li>
+                <li class="carstyle-group-li" v-for="item in car" :key="item.id" @click="changeStyle(item,item.id)" v-show="item.id !== carid">{{item.name}}</li>
               </ul>
             </div>
           </div>
@@ -21,11 +22,12 @@
           <div class="carstyle-title-assemble" @click="carShow('typeShow')">
             <div class="carstyle-title-group">
               <span class="carstyle-title-carstyle">{{childitem.name}}</span>
-              <i class="iconfont icon-down" v-if="childsiblings.length > 0"></i>
+              <i class="iconfont icon-down" v-if="childsiblings.length > 0 && !typeShow"></i>
+              <i class="iconfont icon-up" v-if="childsiblings.length && typeShow> 0"></i>
             </div>
             <div class="carstyle-group-children" v-show="typeShow" v-if="childsiblings.length > 0">
               <ul class="carstyle-group-ul">
-                <li class="carstyle-group-li" v-for="item in childsiblings" :key="item.name">{{item.name}}</li>
+                <li class="carstyle-group-li" v-for="item in childsiblings" :key="item.id" @click="changeType(item, item.id)">{{item.name}}</li>
               </ul>
             </div>
           </div>
@@ -78,7 +80,9 @@ export default {
       pages: 'carstyle',
       select: 0,
       yearselect: null,
-      carselect: 'GA4',
+      carid: this.$route.query.carid,
+      styleid: this.$route.query.styleid,
+      car: '',
       caritem: '',
       childitem: '',
       carsiblings: '',
@@ -91,24 +95,46 @@ export default {
       moreShow: false
     }
   },
+  watch: {
+    caritem () {
+      this.carsiblings = this.notId(this.car, this.carid)
+      this.childitem = this.chooseId(this.caritem.children, this.styleid)
+    },
+    childitem () {
+      this.childsiblings = this.notId(this.caritem.children, this.styleid)
+      this.styleitem = this.childitem.children
+      console.log(this.styleitem)
+      this.select = 0
+      this.styleyears = this.styleitem[this.select].children
+    }
+  },
   methods: {
     getCar () {
-      // 处理获取的car数据
-      let index = this.$route.params.index
-      let car = this.$route.params.car
-      let styleindex = this.$route.params.styleindex
-      this.caritem = this.$route.params.carstyle
-      let stylechildren = this.caritem.children
-      this.childitem = this.caritem.children[styleindex]
-      this.styleitem = this.childitem.children
-      this.styleyears = this.styleitem[this.select].children
-      this.carsiblings = this.removeArray(car, index)
-      this.childsiblings = this.removeArray(stylechildren, styleindex)
+      // 处理请求数据
+      this.car = JSON.parse(this.$localStorage.get('car'))
+      this.caritem = this.chooseId(this.car, this.carid)
     },
-    changeStyle (item, index) {
+    changeStyle (item, itemid) {
+      this.carid = itemid
+      this.styleid = this.carid + '.1'
       this.caritem = item
-      this.carsiblings = this.removeArray(this.carsiblings, index)
-      this.carsiblings.push(this.caritem)
+      this.$router.push({ path: '/carstyle', query: { 'carid': this.carid, 'styleid': this.styleid } })
+    },
+    changeType (item, itemid) {
+      this.childitem = item
+      this.styleid = itemid
+      this.$router.push({ path: '/carstyle', query: { 'carid': this.carid, 'styleid': this.styleid } })
+    },
+    changeYears (itemtype, item, index) {
+      // 改变选中项
+      if (itemtype === 'mainitem') {
+        this.select = index
+        this.yearselect = null
+      } else if (itemtype === 'childitem') {
+        this.yearselect = index
+        this.select = null
+      }
+      this.styleyears = item.children
     },
     removeArray (array, index) {
       // 移除数组中不需要的项
@@ -132,17 +158,6 @@ export default {
         this.moreShow = !this.moreShow
       }
     },
-    changeYears (itemtype, item, index) {
-      // 改变选中项
-      if (itemtype === 'mainitem') {
-        this.select = index
-        this.yearselect = null
-      } else if (itemtype === 'childitem') {
-        this.yearselect = index
-        this.select = null
-      }
-      this.styleyears = item.children
-    },
     judgeLength (item) {
       // 判断子长度并截取
       if (item.length > 9) {
@@ -159,6 +174,26 @@ export default {
     },
     outStyle (item) {
       this.$delete(item, 'active')
+    },
+    chooseId (array, id) {
+      console.log('array')
+      console.log(array)
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].id === id) {
+          return array[i]
+        }
+      }
+    },
+    notId (array, id) {
+      let arr = []
+      let j = 0
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].id !== id) {
+          arr[j] = array[i]
+          j++
+        }
+      }
+      return arr
     }
   },
   created () {
@@ -203,7 +238,7 @@ export default {
           position: absolute;
           background: #fff;
           color: #666;
-          width: 108%;
+          min-width: 108%;
           right: -5px;
           top: 92%;
           border: 1px solid #BFBFBF;
@@ -232,6 +267,8 @@ export default {
             padding: 2px;
             .carstyle-group-li{
               line-height: 1.7;
+              white-space: nowrap;
+              cursor: pointer;
             }
           }
         }
