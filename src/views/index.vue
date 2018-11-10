@@ -2,17 +2,19 @@
     <div class="index">
         <CommonNav :pages="pages"/>
         <img src="../assets/images/banner.png" class="index-banner"/>
-        <div class="app-container index-content">
-            <div class="index-content-cartype" v-for="items in car" :key="items.id">
-                <div class="index-cartype-name">{{items.name}}</div>
-                <div class="index-cartype-carstyle">
-                    <div class="index-carstyle-group" v-for="item in items.children" :key="item.id">
-                        <router-link :to="{ name: 'carstyle', query: {'carid': items.id,'styleid': item.id}}">
-                            <div class="carstyle-group-img" :class="{'app-img-select':item.active}" @mousedown="outStyle(item)" @mouseover="selectStyle(item)" @mouseout="outStyle(item)">
-                                <img :src="item.img"/>
-                            </div>
-                            <div class="carstyle-group-span">{{item.name}}</div>
-                        </router-link>
+        <div class="index-content">
+            <div class="app-container">
+                <div class="index-content-cartype" v-for="items in car" :key="items.id">
+                    <div class="index-cartype-name">{{items.name}}</div>
+                    <div class="index-cartype-carstyle">
+                        <div class="index-carstyle-group" v-for="item in items.children" :key="item.id">
+                            <router-link :to="{ name: 'carstyle', query: {'carid': items.id,'styleid': item.id}}">
+                                <div class="carstyle-group-img" :class="{'app-img-select':item.active}" @mousedown="outStyle(item)" @mouseover="selectStyle(item)" @mouseout="outStyle(item)">
+                                    <img :src="item.img"/>
+                                </div>
+                                <div class="carstyle-group-span">{{item.name}}</div>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>

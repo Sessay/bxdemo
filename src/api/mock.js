@@ -19,6 +19,11 @@ const index = Mock.mock('http://api.com/index', {
                   'name': 'GA4',
                   'introduce': '标准型，2TZD+5MT,2WD',
                   'img': 'http://www.gacmotor.com/Public/Home/img/ga4Btn.png'
+                  // 'data': [
+                  //   {
+
+                  //   }
+                  // ]
                 },
                 {
                   'id': '1.1.1.2',
