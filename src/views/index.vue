@@ -1,7 +1,7 @@
 <template>
     <div class="index">
         <CommonNav :pages="pages"/>
-        <img src="../assets/images/banner.png" class="index-banner"/>
+        <img :src="banner" class="index-banner"/>
         <div class="index-content">
             <div class="app-container">
                 <div class="index-content-cartype" v-for="items in car" :key="items.id">
@@ -24,6 +24,7 @@
 <script>
 import { mapActions } from 'vuex'
 import CommonNav from '@/components/common/CommonNav.vue'
+import banner from '../assets/images/banner.png'
 export default {
   components: {
     CommonNav
@@ -31,7 +32,8 @@ export default {
   data () {
     return {
       pages: 'index',
-      car: ''
+      car: '',
+      banner
     }
   },
   methods: {

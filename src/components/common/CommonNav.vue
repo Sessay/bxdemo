@@ -1,10 +1,7 @@
 <template>
     <div class="common-nav">
         <div class="app-container app-flex-row common-nav-title">
-            <div class="common-log-input app-flex-row">
-
-            </div>
-            <img class="nav-log" src="../../assets/images/index_logo.png" />
+            <img class="nav-log" :src="logo" />
             <div v-if="pages == 'index'" class="nav-input-group">
                 <input class="nav-input-span" id="index"/>
                 <i class="iconfont icon-search"></i>
@@ -30,11 +27,13 @@
     </div>
 </template>
 <script>
+import logo from '../../assets/images/index_logo.png'
 export default {
   props: ['pages'],
   data () {
     return {
-      select: '用户手册'
+      select: '用户手册',
+      logo
     }
   }
 }
