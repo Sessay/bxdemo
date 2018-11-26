@@ -52,6 +52,7 @@ export default {
 <style lang="less" scoped>
 .common-title{
     width: 100%;
+    min-width: 1200px;
     height: 30px;
     background-color: var(--title-background-color);
     color: var(--title-font-color);
