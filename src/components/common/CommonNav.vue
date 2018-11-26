@@ -27,7 +27,7 @@
     </div>
 </template>
 <script>
-import logo from '../../assets/images/index_logo.png'
+import logo from '../../static/images/index_logo.png'
 export default {
   props: ['pages'],
   data () {
