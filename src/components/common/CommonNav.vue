@@ -32,8 +32,8 @@ export default {
   props: ['pages'],
   data () {
     return {
-      select: '用户手册',
-      logo
+      logo,
+      select: '用户手册'
     }
   }
 }
