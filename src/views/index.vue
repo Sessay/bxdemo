@@ -24,7 +24,7 @@
 <script>
 import { mapActions } from 'vuex'
 import CommonNav from '@/components/common/CommonNav.vue'
-import banner from '../../public/images/banner.png'
+import banner from '../assets/img/banner.png'
 export default {
   components: {
     CommonNav
