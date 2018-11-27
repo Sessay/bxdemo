@@ -25,7 +25,7 @@ module.exports = {
 
   lintOnSave: true, // 使用带有浏览器内编译器的完整构建版本 // https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only
 
-  runtimeCompiler: false, // babel-loader默认会跳过`node_modules`依赖. // 通过这个选项可以显示转译一个依赖
+  runtimeCompiler: true, // babel-loader默认会跳过`node_modules`依赖. // 通过这个选项可以显示转译一个依赖
 
   transpileDependencies: [
     /* string or regex */
