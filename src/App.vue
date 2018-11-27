@@ -38,7 +38,7 @@ export default {
 <style lang="less">
 @import url("assets/css/common.less");
 @import url("assets/css/themeone/common.css");
-@import url("http://at.alicdn.com/t/font_889198_0akx7tr3x4ek.css");
+@import url("//at.alicdn.com/t/font_889198_0akx7tr3x4ek.css");
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
